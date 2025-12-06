@@ -1,0 +1,152 @@
+# ================================
+# 환경 변수 / API 키 / 시크릿
+# ================================
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+*.pem
+*.key
+secrets/
+
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+.python-version
+
+# ================================
+# IDEs / 에디터
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-*
+
+# ================================
+# OS 생성 파일
+# ================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ================================
+# 로그 파일
+# ================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ================================
+# 데이터베이스
+# ================================
+*.db
+*.sqlite3
+
+# ================================
+# 테스트 / 커버리지
+# ================================
+htmlcov/
+.coverage
+.coverage.*
+.pytest_cache/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+
+# ================================
+# Docker 볼륨
+# ================================
+postgres_data/
+elasticsearch_data/
+
+# ================================
+# Node.js (프론트엔드)
+# ================================
+node_modules/
+.cache/
+.parcel-cache/
+.npm
+.eslintcache
+
+# 프론트엔드 빌드 결과물
+frontend/dist/
+
+# ================================
+# 크롤링 데이터 / 대용량 데이터
+# ================================
+backend/data/
+!backend/data/.gitkeep
+
+# ================================
+# 데이터베이스 백업 파일
+# ================================
+deploy/backup/*.sql
+*.dump
+*.bak
+
+# ================================
+# 업로드된 파일들
+# ================================
+backend/uploads/
+!backend/uploads/.gitkeep
+
+# ================================
+# Jupyter Notebook 체크포인트
+# ================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ================================
+# 기타
+# ================================
+*.tmp
+*.temp
+.cache
+tmp/
+temp/
+
+
+
+
+

@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: jeju-postgres
+    environment:
+      POSTGRES_USER: jeju_user
+      POSTGRES_PASSWORD: jeju_password
+      POSTGRES_DB: jeju_travel
+    ports:
+      - "5433:5432"  # 5433 포트로 변경 (klid가 5432 사용 중)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./deploy/init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jeju_user -d jeju_travel"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: jeju-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9201:9200"  # 9201 포트로 변경 (klid가 9200 사용 중)
+      - "9301:9300"  # 9301 포트로 변경
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Backend API
+  backend:
+    image: python:3.11-slim
+    container_name: jeju-backend
+    working_dir: /app
+    env_file:
+      - ./backend/.env
+    environment:
+      - DATABASE_URL=postgresql://jeju_user:jeju_password@postgres:5432/jeju_travel
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - POETRY_VIRTUALENVS_CREATE=false
+      - POETRY_NO_INTERACTION=1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      bash -c "
+      apt-get update && apt-get install -y curl gcc g++ libffi-dev &&
+      curl -sSL https://install.python-poetry.org | python3 - &&
+      export PATH=\"/root/.local/bin:\$PATH\" &&
+      cd /app &&
+      poetry lock &&
+      poetry install --no-root &&
+      poetry run uvicorn src.api.app:app --host 0.0.0.0 --port 8000 --reload
+      "
+
+  # Frontend
+  frontend:
+    image: node:20-alpine
+    container_name: jeju-frontend
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    command: >
+      sh -c "
+      npm install &&
+      npm run dev -- --host 0.0.0.0
+      "
+
+volumes:
+  postgres_data:
+  elasticsearch_data:
+
+
+
+
+

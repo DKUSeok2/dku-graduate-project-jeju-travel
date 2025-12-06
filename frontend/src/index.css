@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 min-h-screen bg-gray-50 font-sans;
+  }
+}
+
+@layer components {
+  /* 제주 테마 버튼 */
+  .btn-jeju-primary {
+    @apply bg-jeju-orange-400 text-white px-6 py-3 rounded-lg font-semibold 
+           hover:bg-jeju-orange-500 transition-all duration-200 
+           shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+  }
+  
+  .btn-jeju-secondary {
+    @apply bg-jeju-blue-500 text-white px-6 py-3 rounded-lg font-semibold 
+           hover:bg-jeju-blue-600 transition-all duration-200 
+           shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+  }
+
+  /* 카드 스타일 (여기어때/야놀자 스타일) */
+  .card-jeju {
+    @apply bg-white rounded-2xl shadow-md hover:shadow-xl 
+           transition-all duration-300 overflow-hidden
+           border border-gray-100;
+  }
+
+  /* 네비게이션 링크 */
+.nav-link {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors text-gray-700
+         hover:text-gray-900;
+}
+
+.nav-link:focus,
+.nav-link:active {
+  @apply text-gray-700 outline-none;
+}
+
+.nav-link-active {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors text-jeju-orange-500
+         hover:text-jeju-orange-600;
+}
+
+.nav-link-active:focus,
+.nav-link-active:active {
+  @apply text-jeju-orange-500 outline-none;
+}
+}
+
+@layer utilities {
+  .text-gradient-jeju {
+    @apply bg-gradient-to-r from-jeju-blue-500 via-jeju-blue-400 to-jeju-orange-400 
+           bg-clip-text text-transparent;
+  }
+}
