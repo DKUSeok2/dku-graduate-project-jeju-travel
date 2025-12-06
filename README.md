@@ -418,7 +418,7 @@ npm run dev
 
 <ul>
   <li>📹 <a href="https://youtu.be/ux_MswDJBvA" target="_blank">시연 영상 바로가기</a></li>
-  <li>📘 <a href="#" target="_blank">프로젝트 문서 바로가기</a> (추가 예정)</li>
+  <li>📘 <a href="./screenshots/%5B%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%ED%95%99%EA%B3%BC%20%ED%8F%AC%EC%8A%A4%ED%84%B0%20%EC%A0%9C%EC%B6%9C%5D%20%EC%9E%AC%EC%A3%BC%EA%BE%BC_%EC%A0%9C%EC%A3%BC%20AI%20%EC%97%AC%ED%96%89%20%ED%94%8C%EB%9E%98%EB%84%88%20%281%29.pdf" target="_blank">프로젝트 포스터 (PDF)</a></li>
 </ul>
 
 <hr>
